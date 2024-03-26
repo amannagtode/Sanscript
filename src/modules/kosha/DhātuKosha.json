@@ -1,0 +1,136 @@
+﻿{
+  "Dhatus": [
+    {
+      "dhatu": "कृ",
+      "gana": "तिङ्",
+      "lakshana": "कार्य",
+      "example_usage": "कर्तुं कारणे, कर्मणि विधिः",
+      "meaning": "to do, to make",
+      "tense_usage": {
+        "present": "करोति",
+        "past": "चकार",
+        "future": "करिष्यति"
+      }
+    },
+    {
+      "dhatu": "अस्",
+      "gana": "भ्वाद्यादि",
+      "lakshana": "भविष्यत्प्रत्ययेषु आगमादिभ्यः",
+      "example_usage": "भूयिष्ठे",
+      "meaning": "to be",
+      "tense_usage": {
+        "present": "अस्ति",
+        "past": "अस्त",
+        "future": "भविष्यति"
+      }
+    },
+    {
+      "dhatu": "गम्",
+      "gana": "आदि",
+      "lakshana": "गतिः",
+      "example_usage": "गतावस्था, गमनम्",
+      "meaning": "to go",
+      "tense_usage": {
+        "present": "गच्छति",
+        "past": "गतः",
+        "future": "गमिष्यति"
+      }
+    },
+    {
+      "dhatu": "भू",
+      "gana": "आदि",
+      "lakshana": "अस्तित्वं",
+      "example_usage": "भवतु, भूमिः",
+      "meaning": "to become, to exist",
+      "tense_usage": {
+        "present": "भवति",
+        "past": "अभूत्",
+        "future": "भविष्यति"
+      }
+    },
+    {
+      "dhatu": "दा",
+      "gana": "आदि",
+      "lakshana": "धारणं",
+      "example_usage": "दातव्यम्",
+      "meaning": "to give",
+      "tense_usage": {
+        "present": "ददाति",
+        "past": "दत्तः",
+        "future": "दास्यति"
+      }
+    },
+    {
+      "dhatu": "ली",
+      "gana": "तिङ्",
+      "lakshana": "लिपिः",
+      "example_usage": "लेखनम्",
+      "meaning": "to stick, to adhere",
+      "tense_usage": {
+        "present": "लिप्ते",
+        "past": "लिप्त",
+        "future": "लेपिष्यति"
+      }
+    },
+    {
+      "dhatu": "पच्",
+      "gana": "क्रीडादि",
+      "lakshana": "पक्वार्थकत्वं",
+      "example_usage": "पक्वकारणम्",
+      "meaning": "to cook",
+      "tense_usage": {
+        "present": "पचति",
+        "past": "पक्त",
+        "future": "पक्ष्यति"
+      }
+    },
+    {
+      "dhatu": "मृ",
+      "gana": "भ्वाद्यादि",
+      "lakshana": "मरणं",
+      "example_usage": "मृतिः",
+      "meaning": "to die",
+      "tense_usage": {
+        "present": "म्रियते",
+        "past": "मृत",
+        "future": "म्रियिष्यति"
+      }
+    },
+    {
+      "dhatu": "सृ",
+      "gana": "क्रीडादि",
+      "lakshana": "सृष्टिः",
+      "example_usage": "सरित्सागरयोः प्रचरणम्",
+      "meaning": "to flow",
+      "tense_usage": {
+        "present": "सरति",
+        "past": "सृष्ट",
+        "future": "सृजिष्यति"
+      }
+    },
+    {
+      "dhatu": "स्वद्",
+      "gana": "सुदादि",
+      "lakshana": "स्वादुपचारः",
+      "example_usage": "स्वादिष्टम्",
+      "meaning": "to taste, to enjoy",
+      "tense_usage": {
+        "present": "स्वादते",
+        "past": "सुद",
+        "future": "स्वादिष्यति"
+      }
+    },
+    {
+      "dhatu": "पठ्",
+      "gana": "क्रीडादि",
+      "lakshana": "प्रणिधानम्",
+      "example_usage": "पठितव्यम्",
+      "meaning": "to read",
+      "tense_usage": {
+        "present": "पठति",
+        "past": "पठित",
+        "future": "पठिष्यति"
+      }
+    }
+  ]
+}

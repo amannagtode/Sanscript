@@ -1,0 +1,53 @@
+﻿{
+  "Pratyayas": [
+    {
+      "pratyaya": "ण्",
+      "gana": "तिङ्",
+      "vibhakti": "तृतीया",
+      "meaning": "denotes the third case (dative)",
+      "example_usage": "लिखणं"
+    },
+    {
+      "pratyaya": "तः",
+      "gana": "तिङ्",
+      "vibhakti": "सम्प्रदानम्",
+      "meaning": "denotes the sixth case (ablative), used to express 'from'",
+      "example_usage": "गङ्गातः"
+    },
+    {
+      "pratyaya": "औः",
+      "gana": "तिङ्",
+      "vibhakti": "षष्ठी",
+      "meaning": "denotes the sixth case (ablative), used with dual nouns",
+      "example_usage": "देवावौः"
+    },
+    {
+      "pratyaya": "ईय",
+      "gana": "तिङ्",
+      "vibhakti": "षष्ठी",
+      "meaning": "denotes the sixth case (ablative), used with singular feminine nouns",
+      "example_usage": "पुस्तकाईय"
+    },
+    {
+      "pratyaya": "अणि",
+      "gana": "धातु",
+      "vibhakti": "चतुर्थी",
+      "meaning": "denotes the fourth case (instrumental), used with masculine nouns",
+      "example_usage": "कथनमणि"
+    },
+    {
+      "pratyaya": "विधेयः",
+      "gana": "तिङ्",
+      "vibhakti": "षष्ठी",
+      "meaning": "denotes the sixth case (ablative), used in the sense of 'belonging to'",
+      "example_usage": "गोविधेयः"
+    },
+    {
+      "pratyaya": "ना",
+      "gana": "तिङ्",
+      "vibhakti": "सम्बन्धिता",
+      "meaning": "denotes a possessive relationship, indicating 'of'",
+      "example_usage": "देवदत्तस्य देवदत्ता"
+    }
+  ]
+}

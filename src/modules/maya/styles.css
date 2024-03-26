@@ -1,0 +1,16 @@
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+#editor {
+    width: 100%;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+#outputConsole {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}

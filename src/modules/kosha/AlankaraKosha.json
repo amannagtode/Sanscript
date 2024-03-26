@@ -1,0 +1,156 @@
+﻿{
+  "Alankaras": [
+    {
+      "name": "Upamalarankara",
+      "definition": "A figure of speech in which a comparison is made between two unlike objects using words like 'iva' (like, as).",
+      "examples": [
+        "सीता इव चन्द्रकला, राम इव सूर्यतेजः (Sita is like the moonbeam, Rama is like the sun's radiance)",
+        "मेघ इव काले कम्बलिनी, वायु इव तीव्रगामिनी (Cloud is like a dark blanket, wind is like a swift runner)"
+      ],
+      "category": "Sabdalankara",
+      "subcategories": [ "Uttarakalama", "Sleshalankara" ],
+      "references": [
+        "Kavyalankara Sutra of Vamana",
+        "Dhvanyaloka of Anandavardhana"
+      ]
+    },
+    {
+      "name": "AnuprasaAlankara",
+      "definition": "A poetic device where the same or similar consonants are repeated in close proximity for emphasis.",
+      "examples": [
+        "संगीते संगीतकुले संगीतप्रियदैवते (In the realm of music, in the divine abode of music, to the beloved deity of music)",
+        "सर्वांगसुन्दरी साध्वी साक्षात्पार्वतिरूपिणी (Auspicious and beautiful in every limb, truly the embodiment of Parvati)"
+      ],
+      "category": "Sabdalankara",
+      "subcategories": [ "Gajalankara", "Vrikshalankara" ],
+      "references": [
+        "Kavyadarsha of Dandin",
+        "Alankararatnakara of Rudrata"
+      ]
+    },
+    {
+      "name": "AtisayoktiAlankara",
+      "definition": "A figure of speech where an extraordinary quality of an object or subject is exaggerated.",
+      "examples": [
+        "वायुः शीतो न भवति, विद्युत् शीतकरः न भवति (Wind is not cold, lightning is not chilly)",
+        "प्राणापानौ च पंचवायुसंस्थिता या भवेत् (The life breaths and the five vital airs are balanced)"
+      ],
+      "category": "Arthalankara",
+      "subcategories": [ "Atyantokti", "Vyatireka" ],
+      "references": [
+        "Rasa Ratnakara of Bhanudatta",
+        "Kavyaprakasha of Mammata"
+      ]
+    },
+    {
+      "name": "YamakAlankara",
+      "definition": "A figure of speech where a word or a phrase is repeated for emphasis or to create a poetic effect.",
+      "examples": [
+        "वन्दे वन्दे जगत्-गुरौ वन्दे (I bow to the teachers of the world, I bow)",
+        "नीलाम्बरं नीलवपुषं पिताम्बराढ्यं विश्वेश्वरम् (I adore the Lord of the universe, dressed in blue attire)"
+      ],
+      "category": "Sabdalankara",
+      "subcategories": [ "Anuvada", "Pratika" ],
+      "references": [
+        "Kavyaprakasha of Mammata",
+        "Sahityadarpana of Viswanatha Kaviraja"
+      ]
+    },
+    {
+      "name": "RupakAlankara",
+      "definition": "A figure of speech where a direct or indirect comparison is made using metaphorical language.",
+      "examples": [
+        "देवदत्तः कान्तः खगः (Devadatta is a handsome person, like a bird)",
+        "चन्द्रमा यथा मुक्ताहारः (The moon is like a pearl necklace)"
+      ],
+      "category": "Sabdalankara",
+      "subcategories": [ "Upama", "Atishayokti" ],
+      "references": [
+        "Kavyaprakasha of Mammata",
+        "Rasagangadhara of Panditaraja"
+      ]
+    },
+    {
+      "name": "ShleshAlankara",
+      "definition": "A figure of speech involving a combination of two different ideas, resulting in a harmonious and pleasing effect.",
+      "examples": [
+        "वन्दे मातरम् (I bow to thee, Mother)",
+        "सत्यमेव जयते (Truth alone triumphs)",
+        "अग्नेः शिखायाम् आलोके विद्युत्तमा इवाम्भसा (In the flame of fire, shining like the best lightning in the sky)"
+      ],
+      "category": "Sabdalankara",
+      "subcategories": [ "Tadbhava", "Anyokti" ],
+      "references": [
+        "Kavyaprakasha of Mammata",
+        "Sahityadarpana of Viswanatha Kaviraja"
+      ]
+    },
+    {
+      "name": "UtprekshaAlankara",
+      "definition": "A figure of speech where the expression is uplifted or intensified for greater impact.",
+      "examples": [
+        "न देवासुरमानुषेषु विद्यते परमं स्थानम् (There is no higher place among gods, demons, and humans)"
+      ],
+      "category": "Arthalankara",
+      "subcategories": [ "Anuvadokti", "Atyantokti" ],
+      "references": [
+        "Kavyaprakasha of Mammata",
+        "Rasa Ratnakara of Bhanudatta"
+      ]
+    },
+    {
+      "name": "VakroktiAlankara",
+      "definition": "A figure of speech where the expression is indirect, twisted, or deviates from the ordinary for artistic effect.",
+      "examples": [
+        "सिद्धार्था गच्छन्ति गजाः (Elephants are going, meaning clouds are moving)"
+      ],
+      "category": "Arthalankara",
+      "subcategories": [ "Virodhita", "Jatibhranti" ],
+      "references": [
+        "Kavyaprakasha of Mammata",
+        "Sahityadarpana of Viswanatha Kaviraja"
+      ]
+    },
+    {
+      "name": "VilomAlankara",
+      "definition": "A figure of speech where words are used in the opposite sense for emphasis or irony.",
+      "examples": [
+        "बन्धनं मोक्षः (Captivity is liberation)"
+      ],
+      "category": "Arthalankara",
+      "subcategories": [ "Viparitartha", "Aniha" ],
+      "references": [
+        "Rasa Ratnakara of Bhanudatta",
+        "Kavyaprakasha of Mammata"
+      ]
+    },
+    {
+      "name": "AnulomaAlankara",
+      "definition": "A figure of speech where words are used in their natural or usual order for clarity.",
+      "examples": [
+        "गङ्गा ताम्रपर्णीचा यमुना सरयू सिन्धु (Ganga, Tamraparni, Yamuna, Sarayu, Sindhu)"
+      ],
+      "category": "Sabdalankara",
+      "subcategories": [ "Anuranjana", "Vyanjana" ],
+      "references": [
+        "Kavyaprakasha of Mammata",
+        "Rasagangadhara of Panditaraja"
+      ]
+    },
+    {
+      "name": "YamakAlankara",
+      "definition": "A figure of speech where a word or a phrase is repeated for emphasis or to create a poetic effect.",
+      "examples": [
+        "वन्दे वन्दे जगत्-गुरौ वन्दे (I bow to the teachers of the world, I bow)",
+        "नीलाम्बरं नीलवपुषं पिताम्बराढ्यं विश्वेश्वरम् (I adore the Lord of the universe, dressed in blue attire)"
+      ],
+      "category": "Sabdalankara",
+      "subcategories": [ "Anuvada", "Pratika" ],
+      "references": [
+        "Kavyaprakasha of Mammata",
+        "Sahityadarpana of Viswanatha Kaviraja"
+      ]
+    }
+  ]
+}
+
