@@ -1,4 +1,184 @@
 ﻿class FrameSemanticsSanskritAnalyzer:
+    class VakyaVyavasthaNiyama:
+        def __init__(self):
+            self.rules = self.load_rules()
+
+        def load_rules(self):
+            # Load grammatical rules from a predefined source (e.g., a JSON file or a database)
+            # For simplicity, we'll define some example rules here
+            return {
+                "subject_verb_object": {
+                    "type": "sequence",
+                    "elements": [
+                        {"type": "subject", "required": True},
+                        {"type": "verb", "required": True},
+                        {"type": "object", "required": True}
+                    ]
+                },
+                "subject_verb": {
+                    "type": "sequence",
+                    "elements": [
+                        {"type": "subject", "required": True},
+                        {"type": "verb", "required": True}
+                    ]
+                }
+            }
+
+        def validate_sentence(self, sentence_structure):
+            # Validate the sentence structure based on the loaded rules
+            for rule_name, rule in self.rules.items():
+                if self.match_rule(sentence_structure, rule):
+                    return True
+            return False
+
+        def match_rule(self, sentence_structure, rule):
+            # Check if the sentence structure matches the given rule
+            if rule["type"] == "sequence":
+                if len(sentence_structure) != len(rule["elements"]):
+                    return False
+                for element, rule_element in zip(sentence_structure, rule["elements"]):
+                    if element["type"] != rule_element["type"]:
+                        return False
+            return True
+
+        def generate_sentence(self, rule_name, components):
+            # Generate a sentence based on the given rule and components
+            if rule_name not in self.rules:
+                raise ValueError(f"Rule '{rule_name}' not found.")
+            rule = self.rules[rule_name]
+            sentence = []
+            for element, component in zip(rule["elements"], components):
+                if element["required"] and not component:
+                    raise ValueError(f"Missing required component: {element['type']}")
+                sentence.append(component)
+            return " ".join(sentence)
+
+        def list_rules(self):
+            # List all available grammatical rules
+            return list(self.rules.keys())
+
+        def check_component_validity(self, component):
+            # Check the validity of a specific sentence component
+            # For simplicity, we'll assume all components are valid
+            return True
+
+    # Example usage:
+    if __name__ == "__main__":
+        vakya_vyavastha_niyama = VakyaVyavasthaNiyama()
+
+        # Validate a sentence structure
+        sentence_structure = [
+            {"type": "subject", "value": "रामः"},
+            {"type": "verb", "value": "गच्छति"},
+            {"type": "object", "value": "ग्रामम्"}
+        ]
+        is_valid = vakya_vyavastha_niyama.validate_sentence(sentence_structure)
+        print("Is the sentence structure valid?", is_valid)
+
+        # Generate a sentence based on a rule and components
+        rule_name = "subject_verb_object"
+        components = ["रामः", "गच्छति", "ग्रामम्"]
+        sentence = vakya_vyavastha_niyama.generate_sentence(rule_name, components)
+        print("Generated Sentence:", sentence)
+
+        # List all available grammatical rules
+        rules = vakya_vyavastha_niyama.list_rules()
+        print("Available Rules:", rules)
+
+        # Check the validity of a specific sentence component
+        component = {"type": "subject", "value": "रामः"}
+        is_valid_component = vakya_vyavastha_niyama.check_component_validity(component)
+        print("Is the component valid?", is_valid_component)
+    class VakyaVyavasthaNiyama:
+        def __init__(self):
+            self.rules = self.load_rules()
+
+        def load_rules(self):
+            # Load grammatical rules from a predefined source (e.g., a JSON file or a database)
+            # For simplicity, we'll define some example rules here
+            return {
+                "subject_verb_object": {
+                    "type": "sequence",
+                    "elements": [
+                        {"type": "subject", "required": True},
+                        {"type": "verb", "required": True},
+                        {"type": "object", "required": True}
+                    ]
+                },
+                "subject_verb": {
+                    "type": "sequence",
+                    "elements": [
+                        {"type": "subject", "required": True},
+                        {"type": "verb", "required": True}
+                    ]
+                }
+            }
+
+        def validate_sentence(self, sentence_structure):
+            # Validate the sentence structure based on the loaded rules
+            for rule_name, rule in self.rules.items():
+                if self.match_rule(sentence_structure, rule):
+                    return True
+            return False
+
+        def match_rule(self, sentence_structure, rule):
+            # Check if the sentence structure matches the given rule
+            if rule["type"] == "sequence":
+                if len(sentence_structure) != len(rule["elements"]):
+                    return False
+                for element, rule_element in zip(sentence_structure, rule["elements"]):
+                    if element["type"] != rule_element["type"]:
+                        return False
+            return True
+
+        def generate_sentence(self, rule_name, components):
+            # Generate a sentence based on the given rule and components
+            if rule_name not in self.rules:
+                raise ValueError(f"Rule '{rule_name}' not found.")
+            rule = self.rules[rule_name]
+            sentence = []
+            for element, component in zip(rule["elements"], components):
+                if element["required"] and not component:
+                    raise ValueError(f"Missing required component: {element['type']}")
+                sentence.append(component)
+            return " ".join(sentence)
+
+        def list_rules(self):
+            # List all available grammatical rules
+            return list(self.rules.keys())
+
+        def check_component_validity(self, component):
+            # Check the validity of a specific sentence component
+            # For simplicity, we'll assume all components are valid
+            return True
+
+    # Example usage:
+    if __name__ == "__main__":
+        vakya_vyavastha_niyama = VakyaVyavasthaNiyama()
+
+        # Validate a sentence structure
+        sentence_structure = [
+            {"type": "subject", "value": "रामः"},
+            {"type": "verb", "value": "गच्छति"},
+            {"type": "object", "value": "ग्रामम्"}
+        ]
+        is_valid = vakya_vyavastha_niyama.validate_sentence(sentence_structure)
+        print("Is the sentence structure valid?", is_valid)
+
+        # Generate a sentence based on a rule and components
+        rule_name = "subject_verb_object"
+        components = ["रामः", "गच्छति", "ग्रामम्"]
+        sentence = vakya_vyavastha_niyama.generate_sentence(rule_name, components)
+        print("Generated Sentence:", sentence)
+
+        # List all available grammatical rules
+        rules = vakya_vyavastha_niyama.list_rules()
+        print("Available Rules:", rules)
+
+        # Check the validity of a specific sentence component
+        component = {"type": "subject", "value": "रामः"}
+        is_valid_component = vakya_vyavastha_niyama.check_component_validity(component)
+        print("Is the component valid?", is_valid_component)
     def __init__(self):
         # Initialize resources and tools for frame semantics-based analysis
         pass

@@ -3,7 +3,7 @@ import json
 
 class VibhaktiKosha:
     def __init__(self):
-        self.filepath = os.path.join(os.path.dirname(__file__), "vibhakti_kosha.json")
+        self.filepath = os.path.join(os.path.dirname(__file__), "VibhaktiKosha.json")
         self.data = self.load_data()
 
     def load_data(self):
@@ -17,55 +17,138 @@ class VibhaktiKosha:
             print(f"Error decoding JSON from {self.filepath}")
             return {}
 
-    def inflect_case(self, noun, case, number='singular'):
-        for entry in self.data.get("Nouns", []):
-            if entry["noun"] == noun:
-                return entry[number].get(case, "Not found")
-        return "Noun not found"
-
-    def add_noun(self, noun, gender, singular_forms, plural_forms=None):
-        existing_nouns = [entry["noun"] for entry in self.data.get("Nouns", [])]
-        if noun in existing_nouns:
-            print(f"Noun '{noun}' already exists.")
-            return False
-        new_noun = {"noun": noun, "gender": gender, "singular": singular_forms}
-        if plural_forms:
-            new_noun["plural"] = plural_forms
-        self.data["Nouns"].append(new_noun)
-        self.save_data()
-        return True
-
     def save_data(self):
         try:
             with open(self.filepath, 'w', encoding='utf-8') as file:
                 json.dump(self.data, file, ensure_ascii=False, indent=4)
-            print("Data saved successfully.")
         except Exception as e:
             print(f"Error saving data: {e}")
+
+    def validate_vibhakti_info(self, vibhakti_info):
+        required_keys = ["noun", "vibhaktis"]
+        for key in required_keys:
+            if key not in vibhakti_info:
+                raise ValueError(f"Missing required key: {key}")
+        return True
+
+    def get_vibhakti_info(self, noun):
+        for vibhakti_info in self.data.get("Nouns", []):
+            if vibhakti_info.get("noun") == noun:
+                return vibhakti_info
+        return None
+
+    def get_all_nouns(self):
+        return [vibhakti_info.get("noun") for vibhakti_info in self.data.get("Nouns", [])]
+
+    def get_vibhaktis_by_case(self, case):
+        return [vibhakti_info for vibhakti_info in self.data.get("Nouns", []) if case in vibhakti_info.get("vibhaktis", {})]
+
+    def add_vibhakti(self, vibhakti_info):
+        self.validate_vibhakti_info(vibhakti_info)
+        if self.get_vibhakti_info(vibhakti_info["noun"]):
+            raise ValueError(f"Noun '{vibhakti_info['noun']}' already exists.")
+        self.data.setdefault("Nouns", []).append(vibhakti_info)
+        self.save_data()
+
+    def update_vibhakti(self, noun, new_vibhakti_info):
+        self.validate_vibhakti_info(new_vibhakti_info)
+        nouns = self.data.get("Nouns", [])
+        for idx, vibhakti_info in enumerate(nouns):
+            if vibhakti_info.get("noun") == noun:
+                nouns[idx] = new_vibhakti_info
+                self.data["Nouns"] = nouns
+                self.save_data()
+                return True
+        return False
+
+    def delete_vibhakti(self, noun):
+        nouns = self.data.get("Nouns", [])
+        for idx, vibhakti_info in enumerate(nouns):
+            if vibhakti_info.get("noun") == noun:
+                del nouns[idx]
+                self.data["Nouns"] = nouns
+                self.save_data()
+                return True
+        return False
+
+    def search_vibhaktis(self, **criteria):
+        results = self.data.get("Nouns", [])
+        for key, value in criteria.items():
+            results = [vibhakti_info for vibhakti_info in results if vibhakti_info.get(key) == value]
+        return results
+
+    def count_nouns(self):
+        return len(self.data.get("Nouns", []))
+
+    def list_unique_vibhaktis(self):
+        unique_vibhaktis = set()
+        for vibhakti_info in self.data.get("Nouns", []):
+            unique_vibhaktis.update(vibhakti_info.get("vibhaktis", {}).keys())
+        return list(unique_vibhaktis)
 
 # Example usage:
 if __name__ == "__main__":
     vibhakti_kosha = VibhaktiKosha()
 
-    # Example of inflecting a noun for a specific case
-    noun = "राम"
-    case = "षष्ठी"
-    inflected_noun = vibhakti_kosha.inflect_case(noun, case)
-    print(f"Noun '{noun}' in '{case}' case:", inflected_noun)
+    # Get information for a specific noun
+    vibhakti_info = vibhakti_kosha.get_vibhakti_info("राम")
+    if vibhakti_info:
+        print("Noun:", vibhakti_info.get("noun"))
+        print("Vibhaktis:", vibhakti_info.get("vibhaktis"))
 
-    # Example of adding a new noun
-    new_noun = "गोपाल"
-    new_gender = "masculine"
-    new_singular_forms = {
-        "प्रथमा": "गोपालः",
-        "द्वितीया": "गोपालम्",
-        "तृतीया": "गोपालेन",
-        "चतुर्थी": "गोपालस्य",
-        "पञ्चमी": "गोपाले",
-        "षष्ठी": "गोपालाय",
-        "सप्तमी": "गोपाल"
+    # Get information for all nouns
+    all_nouns = vibhakti_kosha.get_all_nouns()
+    print("All Nouns:")
+    for noun in all_nouns:
+        print("-", noun)
+
+    # Search vibhaktis by case
+    case_vibhaktis = vibhakti_kosha.get_vibhaktis_by_case("प्रथमा")
+    print("Nouns with Prathama Vibhakti:")
+    for vibhakti in case_vibhaktis:
+        print("-", vibhakti.get("noun"))
+
+    # Add a new vibhakti
+    new_vibhakti_info = {
+        "noun": "गणेश",
+        "vibhaktis": {
+            "प्रथमा": "गणेशः",
+            "द्वितीया": "गणेशम्",
+            "तृतीया": "गणेशेन",
+            "चतुर्थी": "गणेशाय",
+            "पञ्चमी": "गणेशात्",
+            "षष्ठी": "गणेशस्य",
+            "सप्तमी": "गणेशे",
+            "सम्बोधन": "गणेश"
+        }
     }
-    if vibhakti_kosha.add_noun(new_noun, new_gender, new_singular_forms):
-        print(f"Noun '{new_noun}' added successfully.")
-    else:
-        print(f"Failed to add noun '{new_noun}'.")
+    vibhakti_kosha.add_vibhakti(new_vibhakti_info)
+
+    # Update an existing vibhakti
+    updated_vibhakti_info = {
+        "noun": "राम",
+        "vibhaktis": {
+            "प्रथमा": "रामः",
+            "द्वितीया": "रामम्",
+            "तृतीया": "रामेण",
+            "चतुर्थी": "रामाय",
+            "पञ्चमी": "रामात्",
+            "षष्ठी": "रामस्य",
+            "सप्तमी": "रामे",
+            "सम्बोधन": "राम"
+        }
+    }
+    vibhakti_kosha.update_vibhakti("राम", updated_vibhakti_info)
+
+    # Delete a vibhakti
+    vibhakti_kosha.delete_vibhakti("गणेश")
+
+    # Search vibhaktis by multiple criteria
+    search_results = vibhakti_kosha.search_vibhaktis(noun="राम")
+    print("Search Results:", search_results)
+
+    # Count the number of nouns
+    print("Total Nouns:", vibhakti_kosha.count_nouns())
+
+    # List all unique vibhaktis
+    print("Unique Vibhaktis:", vibhakti_kosha.list_unique_vibhaktis())

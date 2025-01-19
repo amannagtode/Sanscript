@@ -1,4 +1,10 @@
-﻿class SandhiSamyojaka:
+﻿import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class SandhiSamyojaka:
     @staticmethod
     def apply_sandhi(word1: str, word2: str) -> str:
         """
@@ -11,10 +17,16 @@
         Returns:
             The combined word after applying sandhi rules.
         """
+        if not word1 or not word2:
+            logger.error("Both words must be provided")
+            raise ValueError("Both words must be provided")
+
         if SandhiSamyojaka.is_vowel(word1[-1]) and SandhiSamyojaka.is_consonant(word2[0]):
-            return SandhiSamyojaka.apply_vowel_consonant_sandhi(word1[-1], word2[0]) + word2[1:]
+            return SandhiSamyojaka.apply_vowel_consonant_sandhi(word1, word2)
         elif SandhiSamyojaka.is_consonant(word1[-1]) and SandhiSamyojaka.is_consonant(word2[0]):
-            return SandhiSamyojaka.apply_consonant_consonant_sandhi(word1[-1], word2[0]) + word2[1:]
+            return SandhiSamyojaka.apply_consonant_consonant_sandhi(word1, word2)
+        elif SandhiSamyojaka.is_vowel(word1[-1]) and SandhiSamyojaka.is_vowel(word2[0]):
+            return SandhiSamyojaka.apply_vowel_vowel_sandhi(word1, word2)
         return word1 + " " + word2
 
     @staticmethod
@@ -46,34 +58,39 @@
         return char in consonants
 
     @staticmethod
-    def apply_vowel_consonant_sandhi(vowel: str, consonant: str) -> str:
+    def apply_vowel_consonant_sandhi(word1: str, word2: str) -> str:
         """
         Apply sandhi rules between a vowel and a consonant.
 
         Args:
-            vowel: The last character of the first word (vowel).
-            consonant: The first character of the second word (consonant).
+            word1: The first word ending with a vowel.
+            word2: The second word starting with a consonant.
 
         Returns:
             The combined word after applying sandhi rules.
         """
+        vowel = word1[-1]
+        consonant = word2[0]
         sandhi_map = {
             "अ": {"क": "अच्", "ख": "अग्", "ग": "अज्", "घ": "अज्", "ङ": "अञ्", "च": "च्", "छ": "च्", "ज": "ज्", "झ": "ज्", "ञ": "ञ्", "ट": "ट्", "ठ": "ट्", "ड": "ट्", "ढ": "ट्", "ण": "ण्", "त": "त्", "थ": "त्", "द": "त्", "ध": "त्", "न": "न्", "प": "प्", "फ": "प्", "ब": "प्", "भ": "प्", "म": "म्", "य": "य्", "र": "र्", "ल": "ल्", "व": "व्", "श": "श्", "ष": "ष्", "स": "स्", "ह": "ह्"}
         }
-        return sandhi_map.get(vowel, {}).get(consonant, vowel + consonant)
+        combined = sandhi_map.get(vowel, {}).get(consonant, vowel + consonant)
+        return word1[:-1] + combined + word2[1:]
 
     @staticmethod
-    def apply_consonant_consonant_sandhi(consonant1: str, consonant2: str) -> str:
+    def apply_consonant_consonant_sandhi(word1: str, word2: str) -> str:
         """
         Apply sandhi rules between two consonants.
 
         Args:
-            consonant1: The last character of the first word (consonant).
-            consonant2: The first character of the second word (consonant).
+            word1: The first word ending with a consonant.
+            word2: The second word starting with a consonant.
 
         Returns:
             The combined word after applying sandhi rules.
         """
+        consonant1 = word1[-1]
+        consonant2 = word2[0]
         sandhi_map = {
             "क": {"त": "च्", "त्": "च्", "प": "प्"},
             "ख": {"त": "च्", "त्": "च्", "प": "प्"},
@@ -108,6 +125,41 @@
             "स": {"त": "स्", "त्": "स्", "प": "स्"},
             "ह": {"त": "ह्", "त्": "ह्", "प": "ह्"}
         }
+        combined = sandhi_map.get(consonant1, {}).get(consonant2, consonant1 + consonant2)
+        return word1[:-1] + combined + word2[1:]
 
-        return sandhi_map.get(consonant1, {}).get(consonant2, consonant1 + consonant2)
+    @staticmethod
+    def apply_vowel_vowel_sandhi(word1: str, word2: str) -> str:
+        """
+        Apply sandhi rules between two vowels.
 
+        Args:
+            word1: The first word ending with a vowel.
+            word2: The second word starting with a vowel.
+
+        Returns:
+            The combined word after applying sandhi rules.
+        """
+        vowel1 = word1[-1]
+        vowel2 = word2[0]
+        sandhi_map = {
+            "अ": {"अ": "आ", "इ": "ए", "उ": "ओ", "ऋ": "अर्", "ॠ": "अर्", "ऌ": "अल्", "ॡ": "अल्", "ए": "ऐ", "ऐ": "आ", "ओ": "औ", "औ": "आ"},
+            "आ": {"अ": "आ", "इ": "ए", "उ": "ओ", "ऋ": "आर्", "ॠ": "आर्", "ऌ": "आल्", "ॡ": "आल्", "ए": "ऐ", "ऐ": "आ", "ओ": "औ", "औ": "आ"}
+        }
+        combined = sandhi_map.get(vowel1, {}).get(vowel2, vowel1 + vowel2)
+        return word1[:-1] + combined + word2[1:]
+
+# Example usage
+if __name__ == "__main__":
+    sandhi = SandhiSamyojaka()
+    combined_word = sandhi.apply_sandhi("राम", "अर्जुनः")
+    print("Combined Word:", combined_word)
+
+    combined_word = sandhi.apply_sandhi("गङ्गा", "उदकः")
+    print("Combined Word:", combined_word)
+
+    combined_word = sandhi.apply_sandhi("देव", "इन्द्रः")
+    print("Combined Word:", combined_word)
+
+    combined_word = sandhi.apply_sandhi("कृष्ण", "बलरामः")
+    print("Combined Word:", combined_word)

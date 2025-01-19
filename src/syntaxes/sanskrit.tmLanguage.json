@@ -1,0 +1,52 @@
+{
+  "scopeName": "source.sanskrit",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.sanskrit",
+          "begin": "//",
+          "end": "$"
+        },
+        {
+          "name": "comment.block.sanskrit",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.sanskrit",
+          "match": "\\b(if|else|for|while|return)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.sanskrit",
+          "begin": "\"",
+          "end": "\""
+        },
+        {
+          "name": "string.quoted.single.sanskrit",
+          "begin": "'",
+          "end": "'"
+        }
+      ]
+    }
+  }
+}

@@ -23,6 +23,8 @@
   <ItemGroup>
     <Compile Include="Sanscript.py" />
     <Compile Include="src\core\DhatuSmritiKosha.py" />
+    <Compile Include="src\core\FrameSemanticsSanskritAnalyzer.py" />
+    <Compile Include="src\core\FrameSemanticsSanskritGenerator.py" />
     <Compile Include="src\core\NiyamaNiyojaka.py" />
     <Compile Include="src\core\SamyuktaPrakriyaVikasana.py" />
     <Compile Include="src\core\ShabdaSamyojaka.py" />
@@ -41,6 +43,9 @@
     <Compile Include="src\modules\kosha\SamyuktaKosha.py" />
     <Compile Include="src\modules\kosha\VibhaktiKosha.py" />
     <Compile Include="src\modules\maya\app.py" />
+    <Compile Include="src\modules\maya\gui.py" />
+    <Compile Include="src\modules\maya\main.py" />
+    <Compile Include="src\modules\maya\_init_.py" />
     <Compile Include="src\modules\vyakarana\SamvadaVyavastha.py" />
     <Compile Include="src\modules\vyakarana\SamvastaVrakritaNiyama.py" />
     <Compile Include="src\modules\vyakarana\SandhiSamyojaka.py" />
@@ -59,9 +64,12 @@
     <Folder Include="src\modules\kosha\" />
     <Folder Include="src\modules\maya\" />
     <Folder Include="src\modules\vyakarana\" />
+    <Folder Include="src\syntaxes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="src\config\svabhavasamsthapana.ini" />
+    <Content Include="src\config\package.json" />
+    <Content Include="src\config\language-configuration.json" />
     <Content Include="src\docs\design_documents.md" />
     <Content Include="src\docs\README.md" />
     <Content Include="src\docs\संस्कृत-पठन.md" />
@@ -74,6 +82,8 @@
     <Content Include="src\modules\maya\index.html" />
     <Content Include="src\modules\maya\script.ts" />
     <Content Include="src\modules\maya\styles.css" />
+    <Content Include="src\modules\maya\config.json" />
+    <Content Include="src\syntaxes\sanskrit.tmLanguage.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

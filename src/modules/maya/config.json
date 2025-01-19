@@ -1,0 +1,5 @@
+{
+    "translation_styles": ["literal", "interpretive", "devotional"],
+    "target_languages": ["en", "fr", "de", "es"],
+    "output_dir": "."
+}

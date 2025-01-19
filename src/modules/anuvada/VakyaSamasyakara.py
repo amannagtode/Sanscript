@@ -1,47 +1,81 @@
+﻿import logging
 from collections import namedtuple
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 TranslatedSentence = namedtuple("TranslatedSentence", ["parts"])
 
-def VakyaNirmantakartri(translatedSentence: TranslatedSentence, targetLanguage: str, sanskritText: str):
-  """
-  Constructs a grammatically correct sentence in the target language from translated parts, considering Sanskrit linguistic features.
+def VakyaNirmantakartri(translatedSentence: TranslatedSentence, targetLanguage: str, sanskritText: str) -> str:
+    """
+    Constructs a grammatically correct sentence in the target language from translated parts, considering Sanskrit linguistic features.
 
-  Args:
-      translatedSentence: A TranslatedSentence object with translated parts of the sentence.
-      targetLanguage: The target language code (e.g., "en").
-      sanskritText: The original Sanskrit text for context and analysis.
+    Args:
+        translatedSentence: A TranslatedSentence object with translated parts of the sentence.
+        targetLanguage: The target language code (e.g., "en").
+        sanskritText: The original Sanskrit text for context and analysis.
 
-  Returns:
-      A string representing the complete translated sentence.
-  """
+    Returns:
+        A string representing the complete translated sentence.
+    """
+    if not translatedSentence or not targetLanguage or not sanskritText:
+        logger.error("All arguments must be provided")
+        raise ValueError("All arguments must be provided")
 
-  output = ""
+    output = ""
 
-  # Analyze sentence structure based on semantic roles, Karaka, and Sanskrit syntactic patterns (implement logic here)
-  # ... Determine voice, diathesis, word order based on analysis and target language constraints
+    try:
+        for i, part in enumerate(translatedSentence.parts):
+            # Apply case markings and contextual sandhi adjustments
+            part = apply_case_markings(part, i, translatedSentence.parts, targetLanguage)
+            part = apply_sandhi_adjustments(part, i, translatedSentence.parts, targetLanguage)
 
-  for i, part in enumerate(translatedSentence.parts):
-    # Apply case markings and contextual sandhi adjustments (implement logic here)
-    # ... Consider role, Karaka, neighboring words, and target language pronunciation rules
+            # Handle sentence start, punctuation, conjunctions, and discourse markers
+            if i == 0:
+                output += capitalize_first_word(part, targetLanguage)
+            else:
+                output += add_punctuation(part, i, translatedSentence.parts, targetLanguage)
 
-    # Handle sentence start, punctuation, conjunctions, and discourse markers based on context and analyzed structure
-    if i == 0:
-      output += capitalize_first_word(part)  # Adapt based on target language and Sanskrit sentence patterns
-    else:
-      output += add_punctuation(part, i, translatedSentence.parts)  # Consider target language rules and Sanskrit discourse markers
+            # Integrate culturally-specific expressions and stylistic variations
+            part = integrate_cultural_expressions(part, targetLanguage)
 
-    # Integrate culturally-specific expressions and stylistic variations (optional)
-    # ... Replace idioms, use honorifics, adjust vocabulary based on context
+        # Final adjustments based on target language rules and Sanskrit analysis
+        output = final_adjustments(output, targetLanguage)
 
-  # Final adjustments based on target language rules and Sanskrit analysis (optional)
-  # ... Incorporate stylistic variations, ensure grammatical correctness with Sanskrit tools
+    except Exception as e:
+        logger.error(f"Error constructing sentence: {e}")
+        raise
 
-  return output.strip()
+    return output.strip()
 
-# ... Develop and implement helper functions for specific Sanskrit-related adjustments (case, sandhi, discourse markers, etc.)
+def apply_case_markings(part, index, parts, targetLanguage):
+    # Implement logic to apply case markings based on context and target language
+    return part
+
+def apply_sandhi_adjustments(part, index, parts, targetLanguage):
+    # Implement logic to apply sandhi adjustments based on context and target language
+    return part
+
+def capitalize_first_word(part, targetLanguage):
+    # Implement logic to capitalize the first word based on target language rules
+    return part.capitalize()
+
+def add_punctuation(part, index, parts, targetLanguage):
+    # Implement logic to add punctuation based on context and target language rules
+    return " " + part
+
+def integrate_cultural_expressions(part, targetLanguage):
+    # Implement logic to integrate culturally-specific expressions and stylistic variations
+    return part
+
+def final_adjustments(output, targetLanguage):
+    # Implement final adjustments based on target language rules and Sanskrit analysis
+    return output
 
 # Example usage
-translatedSentence = ...  # Your TranslatedSentence object
-sanskritText = ...  # The original Sanskrit text
-finalSentence = VakyaNirmantakartri(translatedSentence, "en", sanskritText)
-print(f"Final Translated Sentence: {finalSentence}")
+if __name__ == "__main__":
+    translatedSentence = TranslatedSentence(parts=["I", "am", "going", "to", "the", "village"])
+    sanskritText = "अहं गच्छामि ग्रामं।"
+    finalSentence = VakyaNirmantakartri(translatedSentence, "en", sanskritText)
+    print(f"Final Translated Sentence: {finalSentence}")

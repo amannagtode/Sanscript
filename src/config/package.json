@@ -1,0 +1,19 @@
+{
+  "contributes": {
+    "languages": [
+      {
+        "id": "sanskrit",
+        "aliases": ["Sanskrit", "sanskrit"],
+        "extensions": [".sn"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sanskrit",
+        "scopeName": "source.sanskrit",
+        "path": "./syntaxes/sanskrit.tmLanguage.json"
+      }
+    ]
+  }
+}

@@ -1,79 +1,106 @@
-﻿class VyakaranaNiyama {
-  static readonly VakyaRule = {
-    type: "sequence",
-    elements: [
-      { type: "Naama" },
-      { type: "Kriya" },
-      // Allow optional elements like Upasarga and Vibhakti (indirect object) # type: ignore
-      { type: "Upasarga", optional: true },
-      { type: "Vibhakti", optional: true },
-    ],
-  };
+﻿import logging
 
-  static readonly NaamaRule = {
-    type: "choice",
-    elements: [
-      { type: "SamjñaNaama", properties: { gender: String, number: String, case: String } },
-      { type: "SarvaNaama", properties: { person: String, number: String, case: String } },
-      // Add rules for pronouns and adjectives
-    ],
-  };
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-  static readonly KriyaRule = {
-    type: "sequence",
-    elements: [
-      // Consider optional prefixes and augmentations
-      { type: "Pratyaya", optional: true }, // for pre-fixes
-      { type: "Dhātu", properties: { root: String, tense: String, voice: String } },
-      { type: "Pratyaya", required: true }, // for main suffix
-    ],
-  };
-
-  static readonly VibhaktiRule = {
-    type: "choice",
-    elements: [
-      { type: "KarakaVibhakti", properties: { karaka: String } },
-      { type: "TatpurushaSamasa", properties: { components: Array<String> } },
-      // Add rules for other compound types and adpositional phrases
-    ],
-  };
-
-  // ... Define additional rules for various grammatical elements
-
-  // Function to validate a sentence against grammar rules
-  static isValidSentence(sentence: Array<Object>): boolean {
-    const vakyaIsValid = this.VakyaRule.validate(sentence);
-    if (!vakyaIsValid) {
-      return false;
+class VyakaranaNiyama:
+    VakyaRule = {
+        "type": "sequence",
+        "elements": [
+            {"type": "Naama"},
+            {"type": "Kriya"},
+            {"type": "Upasarga", "optional": True},
+            {"type": "Vibhakti", "optional": True},
+        ],
     }
 
-    // Perform further validations on individual elements and their properties
-    for (const element of sentence) {
-      const elementTypeRule = this[element.type + "Rule"];
-      if (!elementTypeRule.validate(element)) {
-        return false;
-      }
+    NaamaRule = {
+        "type": "choice",
+        "elements": [
+            {"type": "SamjñaNaama", "properties": {"gender": str, "number": str, "case": str}},
+            {"type": "SarvaNaama", "properties": {"person": str, "number": str, "case": str}},
+        ],
     }
 
-    return true;
-  }
+    KriyaRule = {
+        "type": "sequence",
+        "elements": [
+            {"type": "Pratyaya", "optional": True},
+            {"type": "Dhātu", "properties": {"root": str, "tense": str, "voice": str}},
+            {"type": "Pratyaya", "required": True},
+        ],
+    }
 
-  // ... Implement validation functions for individual element types
+    VibhaktiRule = {
+        "type": "choice",
+        "elements": [
+            {"type": "KarakaVibhakti", "properties": {"karaka": str}},
+            {"type": "TatpurushaSamasa", "properties": {"components": list}},
+        ],
+    }
 
-}
+    @staticmethod
+    def isValidSentence(sentence):
+        """
+        Validate a sentence against the defined grammar rules.
 
-// Example usage
+        Args:
+            sentence (list): A list of elements representing the sentence.
 
-const validSentence = [
-  { type: "SamjñaNaama", value: "रामः", properties: { gender: "masculine", number: "singular", case: "nominative" } },
-  { type: "Kriya", value: "दर्शयति", properties: { root: "दर्श", tense: "present", voice: "active" } },
-  { type: "KarakaVibhakti", value: "कर्मणि", properties: { karaka: "object" } },
-];
+        Returns:
+            bool: True if the sentence is valid, False otherwise.
+        """
+        try:
+            vakyaIsValid = VyakaranaNiyama.validate_rule(sentence, VyakaranaNiyama.VakyaRule)
+            if not vakyaIsValid:
+                return False
 
-const invalidSentence = [
-  { type: "Kriya", value: "दर्शति", properties: { root: "दर्श", tense: "past", voice: "active" } },
-  { type: "SamjñaNaama", value: "सीता", properties: { gender: "feminine", number: "singular", case: "accusative" } },
-];
+            for element in sentence:
+                elementTypeRule = getattr(VyakaranaNiyama, element["type"] + "Rule", None)
+                if elementTypeRule and not VyakaranaNiyama.validate_rule(element, elementTypeRule):
+                    return False
 
-console.log(VyakaranaNiyama.isValidSentence(validSentence) ? "Valid sentence!" : "Invalid sentence.");
-console.log(VyakaranaNiyama.isValidSentence(invalidSentence) ? "Valid sentence!" : "Invalid sentence.");
+            return True
+        except Exception as e:
+            logger.error(f"Error validating sentence: {e}")
+            return False
+
+    @staticmethod
+    def validate_rule(element, rule):
+        """
+        Validate an element against a specific rule.
+
+        Args:
+            element (dict): The element to validate.
+            rule (dict): The rule to validate against.
+
+        Returns:
+            bool: True if the element is valid, False otherwise.
+        """
+        if rule["type"] == "sequence":
+            for rule_elem in rule["elements"]:
+                if rule_elem.get("optional") and not any(elem["type"] == rule_elem["type"] for elem in element):
+                    continue
+                if not any(elem["type"] == rule_elem["type"] for elem in element):
+                    return False
+        elif rule["type"] == "choice":
+            if not any(element["type"] == choice["type"] for choice in rule["elements"]):
+                return False
+        return True
+
+# Example usage
+if __name__ == "__main__":
+    validSentence = [
+        {"type": "SamjñaNaama", "value": "रामः", "properties": {"gender": "masculine", "number": "singular", "case": "nominative"}},
+        {"type": "Kriya", "value": "दर्शयति", "properties": {"root": "दर्श", "tense": "present", "voice": "active"}},
+        {"type": "KarakaVibhakti", "value": "कर्मणि", "properties": {"karaka": "object"}},
+    ]
+
+    invalidSentence = [
+        {"type": "Kriya", "value": "दर्शति", "properties": {"root": "दर्श", "tense": "past", "voice": "active"}},
+        {"type": "SamjñaNaama", "value": "सीता", "properties": {"gender": "feminine", "number": "singular", "case": "accusative"}},
+    ]
+
+    print("Valid sentence:", VyakaranaNiyama.isValidSentence(validSentence))
+    print("Invalid sentence:", VyakaranaNiyama.isValidSentence(invalidSentence))

@@ -5,49 +5,98 @@
       "gana": "तिङ्",
       "vibhakti": "तृतीया",
       "meaning": "denotes the third case (dative)",
-      "example_usage": "लिखणं"
+      "example_usage": ["लिखणं"],
+      "category": "case",
+      "notes": "Used in classical Sanskrit literature.",
+      "related_pratyayas": ["तः"],
+      "metadata": {
+        "created_at": "2023-10-01T12:00:00Z",
+        "updated_at": "2023-10-01T12:00:00Z"
+      }
     },
     {
       "pratyaya": "तः",
       "gana": "तिङ्",
       "vibhakti": "सम्प्रदानम्",
       "meaning": "denotes the sixth case (ablative), used to express 'from'",
-      "example_usage": "गङ्गातः"
+      "example_usage": ["गङ्गातः"],
+      "category": "case",
+      "notes": "Commonly used in Vedic texts.",
+      "related_pratyayas": ["ण्"],
+      "metadata": {
+        "created_at": "2023-10-01T12:00:00Z",
+        "updated_at": "2023-10-01T12:00:00Z"
+      }
     },
     {
       "pratyaya": "औः",
       "gana": "तिङ्",
       "vibhakti": "षष्ठी",
       "meaning": "denotes the sixth case (ablative), used with dual nouns",
-      "example_usage": "देवावौः"
+      "example_usage": ["देवावौः"],
+      "category": "case",
+      "notes": "Used in dual forms.",
+      "related_pratyayas": ["ईय"],
+      "metadata": {
+        "created_at": "2023-10-01T12:00:00Z",
+        "updated_at": "2023-10-01T12:00:00Z"
+      }
     },
     {
       "pratyaya": "ईय",
       "gana": "तिङ्",
       "vibhakti": "षष्ठी",
       "meaning": "denotes the sixth case (ablative), used with singular feminine nouns",
-      "example_usage": "पुस्तकाईय"
+      "example_usage": ["पुस्तकाईय"],
+      "category": "case",
+      "notes": "Specific to feminine nouns.",
+      "related_pratyayas": ["औः"],
+      "metadata": {
+        "created_at": "2023-10-01T12:00:00Z",
+        "updated_at": "2023-10-01T12:00:00Z"
+      }
     },
     {
       "pratyaya": "अणि",
       "gana": "धातु",
       "vibhakti": "चतुर्थी",
       "meaning": "denotes the fourth case (instrumental), used with masculine nouns",
-      "example_usage": "कथनमणि"
+      "example_usage": ["कथनमणि"],
+      "category": "case",
+      "notes": "Used in instrumental forms.",
+      "related_pratyayas": [],
+      "metadata": {
+        "created_at": "2023-10-01T12:00:00Z",
+        "updated_at": "2023-10-01T12:00:00Z"
+      }
     },
     {
       "pratyaya": "विधेयः",
       "gana": "तिङ्",
       "vibhakti": "षष्ठी",
       "meaning": "denotes the sixth case (ablative), used in the sense of 'belonging to'",
-      "example_usage": "गोविधेयः"
+      "example_usage": ["गोविधेयः"],
+      "category": "case",
+      "notes": "Indicates possession.",
+      "related_pratyayas": [],
+      "metadata": {
+        "created_at": "2023-10-01T12:00:00Z",
+        "updated_at": "2023-10-01T12:00:00Z"
+      }
     },
     {
       "pratyaya": "ना",
       "gana": "तिङ्",
       "vibhakti": "सम्बन्धिता",
       "meaning": "denotes a possessive relationship, indicating 'of'",
-      "example_usage": "देवदत्तस्य देवदत्ता"
+      "example_usage": ["देवदत्तस्य देवदत्ता"],
+      "category": "case",
+      "notes": "Used to show possession.",
+      "related_pratyayas": [],
+      "metadata": {
+        "created_at": "2023-10-01T12:00:00Z",
+        "updated_at": "2023-10-01T12:00:00Z"
+      }
     }
   ]
 }

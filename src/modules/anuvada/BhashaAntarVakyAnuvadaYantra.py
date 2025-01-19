@@ -1,4 +1,4 @@
-﻿﻿import logging
+﻿import logging
 from functools import lru_cache
 
 # Logger setup
@@ -23,45 +23,45 @@ custom_translation_rules = {
 
 # Cached translation lookup
 @lru_cache(maxsize=None)
-def getWordTranslation(shabda, targetLanguage, customRules):
-    logger.info(f"Translating word: {shabda} to {targetLanguage}")
-    translated_word = word_translations.get(shabda, {}).get(targetLanguage)
+def get_word_translation(shabda, target_language, custom_rules):
+    logger.info(f"Translating word: {shabda} to {target_language}")
+    translated_word = word_translations.get(shabda, {}).get(target_language)
     if not translated_word:
         # Handle translation not found in the dictionary
-        logger.warning(f"Translation not found for word: {shabda} to {targetLanguage}")
+        logger.warning(f"Translation not found for word: {shabda} to {target_language}")
         return shabda  # Return the original word if translation is not found
     return translated_word
 
-def apply_sandhi(shabda, neighbors, targetLanguage):
+def apply_sandhi(shabda, neighbors, target_language):
     # Placeholder implementation for sandhi application
     logger.info("Applying sandhi")
     # Implement sandhi logic here
     return shabda
 
-def adjust_translation(wordTranslation, role, karaka, honorifics, register, targetLanguage):
+def adjust_translation(word_translation, role, karaka, honorifics, register, target_language):
     # Placeholder implementation for translation adjustment
-    logger.info(f"Adjusting translation for: {wordTranslation}, Role: {role}, Karaka: {karaka}, Honorifics: {honorifics}, Register: {register}")
+    logger.info(f"Adjusting translation for: {word_translation}, Role: {role}, Karaka: {karaka}, Honorifics: {honorifics}, Register: {register}")
     # Implement translation adjustment logic here
-    adjusted_translation = wordTranslation
+    adjusted_translation = word_translation
     return adjusted_translation
 
-def BhashaAntarYantra(semanticUnits, targetLanguage, honorifics=False, register=None, customRules=None):
-    translatedSentence = TranslatedSentence([])
-    for unit in semanticUnits:
-        translatedPart = translateUnit(unit, targetLanguage, honorifics, register, customRules)
-        translatedSentence.parts.append(translatedPart)
-    return translatedSentence
+def bhasha_antar_yantra(semantic_units, target_language, honorifics=False, register=None, custom_rules=None):
+    translated_sentence = TranslatedSentence([])
+    for unit in semantic_units:
+        translated_part = translate_unit(unit, target_language, honorifics, register, custom_rules)
+        translated_sentence.parts.append(translated_part)
+    return translated_sentence
 
-def translateUnit(unit, targetLanguage, honorifics=False, register=None, customRules=None):
+def translate_unit(unit, target_language, honorifics=False, register=None, custom_rules=None):
     shabda = unit.shabda
-    shabda.shabdaRupa = apply_sandhi(shabda, unit.node.children, targetLanguage)
-    wordTranslation = getWordTranslation(shabda, targetLanguage, customRules)
-    wordTranslation = adjust_translation(wordTranslation, unit.role, unit.karaka, honorifics, register, targetLanguage)
-    return wordTranslation
+    shabda.shabdaRupa = apply_sandhi(shabda, unit.node.children, target_language)
+    word_translation = get_word_translation(shabda, target_language, custom_rules)
+    word_translation = adjust_translation(word_translation, unit.role, unit.karaka, honorifics, register, target_language)
+    return word_translation
 
 # Additional functionalities:
 
-def syntax_check(translated_sentence, targetLanguage):
+def syntax_check(translated_sentence, target_language):
     # Placeholder implementation for syntax checking
     logger.info("Performing syntax checking")
     # Implement syntax checking logic here
@@ -75,7 +75,7 @@ def interactive_translation_mode():
         if user_input.lower() == "exit":
             break
         semantic_units = parse_user_input(user_input)
-        translated_sentence = BhashaAntarYantra(semantic_units, "en", honorifics=True, register="formal")
+        translated_sentence = bhasha_antar_yantra(semantic_units, "en", honorifics=True, register="formal")
         print(f"Translated Sentence: {' '.join(translated_sentence.parts)}")
         # Perform syntax checking on translated sentence
         is_valid_syntax = syntax_check(translated_sentence, "en")
@@ -93,9 +93,9 @@ def parse_user_input(user_input):
 # Example usage
 if __name__ == "__main__":
     # Test translation of a predefined sentence
-    semanticUnits = [...]  # Placeholder for semantic units
-    translatedSentence = BhashaAntarYantra(semanticUnits, "en", honorifics=True, register="formal")
-    print(f"Translated Sentence: {' '.join(translatedSentence.parts)}")
+    semantic_units = [...]  # Placeholder for semantic units
+    translated_sentence = bhasha_antar_yantra(semantic_units, "en", honorifics=True, register="formal")
+    print(f"Translated Sentence: {' '.join(translated_sentence.parts)}")
 
     # Enter interactive translation mode
     interactive_translation_mode()
